@@ -26,6 +26,8 @@ public class Chassis extends SubsystemBase implements Sendable{
   private TalonSRX motor_right_2 = new TalonSRX(Constants.right_port_2);
   private TalonSRX motor_left_1 = new TalonSRX(Constants.left_port_1);
   private TalonSRX motor_left_2 = new TalonSRX(Constants.left_port_2);
+  private PigeonIMU gyro = new PigeonIMU(Constants.gyro_port);
+
    
   public Chassis() {
     super();
@@ -64,7 +66,7 @@ public class Chassis extends SubsystemBase implements Sendable{
     motor_left_2.set(ControlMode.PercentageOutput, power_left);
   }
   public void Set_velocity(double speed){
-    double angle = motor_left_1.Gyro.GetAngle();
+    double angle = GetAngle();
     double error = angle - gyroStartValue;
     sumError += error;
     double p = error * Constants.kp;
@@ -132,6 +134,14 @@ public class Chassis extends SubsystemBase implements Sendable{
     leftSpeed = speed * (1 - corr);
     rightSpeed = speed * (1 + corr);
   }
+  public double getAngle(){ // returns the raw angle of the robot
+    if(isReversed){
+      return (gyro.getFusedHeading() + baseAngle) * (Constants.kGyroReversed ? -1.0 : 1.0) + 180;
+    } else {
+      return (gyro.getFusedHeading() + baseAngle) * (Constants.kGyroReversed ? -1.0 : 1.0);
+    }
+  }
+
 
   public double getEncoder(int id ){
     double result;
