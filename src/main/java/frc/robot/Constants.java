@@ -24,6 +24,7 @@ public final class Constants {
     public static double max_pwr = 0.7;
     public static double min_pwr = 0.1;
     public static double p1 = 0.3;
+    public static int gyro_port = 6;
     public static double diameter = 0.1524;
     public static double perimiter = diameter*2*Math.PI;
     public static double pulses_in_spins = 800;
