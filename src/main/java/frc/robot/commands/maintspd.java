@@ -32,13 +32,15 @@ public class maintspd extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    chassis.setForwardSpeed(0.01, Constants.pulses_in_meter);
+    chassis.setForwardSpeed(0.01, Constants.pulses_in_meter,0,chassis.getAngle(),0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    chassis.Set_velocity(0);
+    chassis.setConstantSpeed(0,"right",0,0);
+    chassis.setConstantSpeed(0,"left",0,0);
+
   }
 
   // Returns true when the command should end.

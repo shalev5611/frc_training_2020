@@ -16,6 +16,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Chassis;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.maintspd;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -29,7 +30,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   public static XboxController controller  = new XboxController(Constants.xbox_port);
   public static Chassis chassis = new Chassis();
-  public static Gyro gyro = new Gyro();
+  private PigeonIMU gyro = new PigeonIMU(Constants.gyro_port);
   public static Drive_By_Encoder drive = new Drive_By_Encoder(chassis);
   public static maintspd msp = new maintspd(chassis); 
   /**

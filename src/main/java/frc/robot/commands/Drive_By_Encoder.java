@@ -31,11 +31,11 @@ public class Drive_By_Encoder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(chassis.getEncoder(2)<Constants.pulses_in_meter){
-      chassis.Set_velocity(0.2);
-    }
-    System.out.println("second:");
-    System.out.println(chassis.getEncoder(2));
+    ///if(chassis.getEncoder(2)<Constants.pulses_in_meter){
+      //chassis.Set_velocity(0.2);
+   // }
+    //System.out.println("second:");
+    //System.out.println(chassis.getEncoder(2));
 
   }
 
