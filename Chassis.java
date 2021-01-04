@@ -77,9 +77,9 @@ public class Chassis extends SubsystemBase implements Sendable{
     double d = (lastError - error) * Constants.kd;
     lastError = error;
     double corr = (p + i + d);
-    motor_left_1.set(ControlMode.Velocity, (Constants.pulses_in_meter * (speed * (1-corr))) / 10, DemandType.ArbitraryFeedForward,
+    motor_left_1.set(ControlMode.Velocity, ((speed * (1-corr))) / 10, DemandType.ArbitraryFeedForward,
     (Constants.kv + Constants.ks * speed + Constants.ka * 0) / 12);
-    motor_left_1.set(ControlMode.Velocity, (Constants.pulses_in_meter * (speed * (1+corr))) / 10, DemandType.ArbitraryFeedForward,
+    motor_left_1.set(ControlMode.Velocity, ((speed * (1+corr))) / 10, DemandType.ArbitraryFeedForward,
     (Constants.kv + Constants.ks * speed + Constants.ka * 0) / 12);
   }
   public void setConstantSpeed(double speed, String motor, double lastError, double sumError){
